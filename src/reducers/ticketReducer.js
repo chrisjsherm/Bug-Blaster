@@ -22,9 +22,15 @@ export default function ticketReducer(state, action) {
 
           return ticket;
         }),
+        editingTicket: null,
       };
 
     case actionDeleteTicket:
+      let editingTicket = state.editingTicket;
+      if (state.editingTicket && state.editingTicket.id === action.payload.id) {
+        // Deleting ticket we're currently editing.
+        editingTicket = null;
+      }
       return {
         ...state,
         tickets: state.tickets.filter((ticket) => {
@@ -33,6 +39,7 @@ export default function ticketReducer(state, action) {
           }
           return true;
         }),
+        editingTicket,
       };
 
     case actionSetEditingTicket:

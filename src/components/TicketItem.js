@@ -2,11 +2,10 @@ import React from "react";
 import {
   actionDeleteTicket,
   actionSetEditingTicket,
-  actionUpdateTicket,
 } from "../reducers/ticketReducer";
 
 export default function TicketItem({ ticket, dispatch }) {
-  const { id, title, description, priority } = ticket;
+  const { title, description, priority } = ticket;
 
   const priorityClass = {
     1: "priority-low",
