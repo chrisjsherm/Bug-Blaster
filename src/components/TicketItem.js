@@ -1,6 +1,7 @@
 import React from "react";
 import {
   actionDeleteTicket,
+  actionSetEditingTicket,
   actionUpdateTicket,
 } from "../reducers/ticketReducer";
 
@@ -29,6 +30,18 @@ export default function TicketItem({ ticket, dispatch }) {
         }
       >
         Delete
+      </button>
+
+      <button
+        className="button"
+        onClick={() =>
+          dispatch({
+            type: actionSetEditingTicket,
+            payload: ticket,
+          })
+        }
+      >
+        Edit
       </button>
     </div>
   );

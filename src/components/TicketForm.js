@@ -1,12 +1,22 @@
-import React, { useState } from "react";
-import { actionAddTicket } from "../reducers/ticketReducer";
+import React, { useState, useEffect } from "react";
+import { actionAddTicket, actionUpdateTicket } from "../reducers/ticketReducer";
 
-export default function TicketForm({ dispatch }) {
+export default function TicketForm({ dispatch, editingTicket }) {
   const priorityLabels = {
     1: "Low",
     2: "Medium",
     3: "High",
   };
+
+  useEffect(() => {
+    if (editingTicket) {
+      setTitle(editingTicket.title);
+      setDescription(editingTicket.description);
+      setPriority(editingTicket.priority);
+    } else {
+      clearForm();
+    }
+  }, [editingTicket]);
 
   const defaultPriority = "1";
 
@@ -23,13 +33,13 @@ export default function TicketForm({ dispatch }) {
   function handleSubmit(e) {
     e.preventDefault();
     const ticketData = {
-      id: new Date().toISOString(),
+      id: editingTicket ? editingTicket.id : new Date().toISOString(),
       title,
       description,
       priority,
     };
     dispatch({
-      type: actionAddTicket,
+      type: editingTicket ? actionUpdateTicket : actionAddTicket,
       payload: ticketData,
     });
 
