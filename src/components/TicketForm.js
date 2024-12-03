@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { actionAddTicket } from "../reducers/ticketReducer";
 
-export default function TicketForm() {
+export default function TicketForm({ dispatch }) {
   const priorityLabels = {
     1: "Low",
     2: "Medium",
@@ -21,6 +22,17 @@ export default function TicketForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const ticketData = {
+      id: new Date().toISOString(),
+      title,
+      description,
+      priority,
+    };
+    dispatch({
+      type: actionAddTicket,
+      payload: ticketData,
+    });
+
     clearForm();
   }
 
