@@ -28,7 +28,7 @@ export default function ticketReducer(state, action) {
     case actionDeleteTicket:
       let editingTicket = state.editingTicket;
       if (state.editingTicket && state.editingTicket.id === action.payload.id) {
-        // Deleting ticket we're currently editing.
+        // We're deleting ticket we're currently editing.
         editingTicket = null;
       }
       return {
