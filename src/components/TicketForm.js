@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { actionAddTicket, actionUpdateTicket } from "../reducers/ticketReducer";
+import {
+  actionAddTicket,
+  actionClearEditingTicket,
+  actionUpdateTicket,
+} from "../reducers/ticketReducer";
 
 export default function TicketForm({ dispatch, editingTicket }) {
   const priorityLabels = {
@@ -43,6 +47,13 @@ export default function TicketForm({ dispatch, editingTicket }) {
       payload: ticketData,
     });
 
+    clearForm();
+  }
+
+  function handleCancel() {
+    dispatch({
+      type: actionClearEditingTicket,
+    });
     clearForm();
   }
 
@@ -92,6 +103,12 @@ export default function TicketForm({ dispatch, editingTicket }) {
       <button type="submit" className="button">
         Submit
       </button>
+
+      {editingTicket && (
+        <button className="button" onClick={handleCancel}>
+          Cancel
+        </button>
+      )}
     </form>
   );
 }
