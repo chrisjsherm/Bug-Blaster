@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Project 2 of Learn React the Fast Way by Denis Panjuta
+
+This is the second project from the Udemy course by Denis Panjuta.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
